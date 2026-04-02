@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="/styles.css/paginalogin.css">
+    <link rel="stylesheet" href="script.js">
+
+    <title>Login</title>
+
+</head>
+
+<div class="login-container">
+    <h2>Entrar na sua conta</h2>
+
+    <div class="input-group">
+        <input type="email" id="email" placeholder="E-mail">
+    </div>
+
+    <div class="input-group">
+        <input type="password" id="senha" placeholder="Senha">
+    </div>
+
+    <button onclick="login()">Entrar</button>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="links">
+        <p><a href="#">Esqueceu a senha?</a></p>
+    </div>
+
+    <p id="mensagem" style="margin-top:15px;"></p>
+</div>
+
+<script>
+    function login() {
+        let email = document.getElementById("email").value;
+        let senha = document.getElementById("senha").value;
+        let mensagem = document.getElementById("mensagem");
+        let progressContainer = document.querySelector(".progress-container");
+        let progressBar = document.getElementById("progressBar");
+
+        if (email === "yasminsantana@gmail.com" && senha === "2905") {
+            mensagem.style.color = "#00ffcc";
+            mensagem.innerText = "Entrando...";
+
+            progressContainer.style.display = "block";
+
+            let largura = 0;
+
+            let carregando = setInterval(() => {
+                if (largura >= 100) {
+                    clearInterval(carregando);
+                    window.location.href = "/index.html";
+                } else {
+                    largura++;
+                    progressBar.style.width = largura + "%";
+                }
+            }, 15);
+
+        } else {
+            mensagem.style.color = "#ff6b6b";
+            mensagem.innerText = "E-mail ou senha incorretos.";
+        }
+    }
+</script>
+
+</body>
+
+</html>
