@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -27,7 +27,10 @@ def login():
         conn.close()
 
         if usuario:
-            mensagem = 'Login realizado com sucesso!'
+
+            # REDIRECIONA PARA O PAINEL
+            return redirect('/painel')
+
         else:
             mensagem = 'E-mail ou senha incorretos.'
 
@@ -35,6 +38,12 @@ def login():
         'paginalogin.html',
         mensagem=mensagem
     )
+
+
+# NOVA ROTA
+@app.route('/painel')
+def painel():
+    return '<h1>Bem-vindo ao painel!</h1>'
 
 
 if __name__ == '__main__':
