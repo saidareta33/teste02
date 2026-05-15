@@ -8,7 +8,7 @@ formulario.addEventListener("submit", function(event) {
     event.preventDefault();
 
     // Pega os valores dos inputs
-    const email = document.querySelector('input[name="email"]').value;
+    const gmail = document.querySelector('input[name="gmail"]').value;
     const senha = document.querySelector('input[name="senha"]').value;
 
     // Verifica se é um Gmail válido

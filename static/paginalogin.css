@@ -1,119 +1,230 @@
+/* ===== RESET ===== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
 }
 
-/* ===== Fundo estilo iOS ===== */
+/* ===== BODY ===== */
+
 body {
     height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    background:  linear-gradient(120deg, rgba(3, 3, 76, 0.85), rgb(63, 8, 145))
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        rgb(15, 15, 40),
+        rgb(63, 8, 145),
+        rgb(110, 30, 220)
+    );
+
+    overflow: hidden;
 }
 
-/* ===== Card Login ===== */
+/* ===== CARD LOGIN ===== */
+
 .login-container {
-    background: rgba(255, 255, 255, 0.15);
+
+    width: 100%;
+    max-width: 380px;
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.12);
+
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    padding: 40px;
-    width: 100%;
-    max-width: 350px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.35);
+
     text-align: center;
+
     color: white;
 }
 
-/* ===== Título ===== */
+/* ===== TITULO ===== */
+
 .login-container h2 {
-    margin-bottom: 25px;
-    font-weight: 500;
+
+    margin-bottom: 30px;
+
+    font-size: 28px;
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
 }
 
-/* ===== Inputs ===== */
-.input-group {
-    margin-bottom: 20px;
+/* ===== FORM ===== */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.input-group input {
+/* ===== INPUTS ===== */
+
+input {
+
     width: 100%;
-    padding: 14px;
-    border-radius: 15px;
+
+    padding: 15px;
+
     border: none;
     outline: none;
-    font-size: 14px;
-    background: rgba(255,255,255,0.2);
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.18);
+
     color: white;
+
+    font-size: 15px;
+
     transition: 0.3s;
 }
 
-.input-group input::placeholder {
-    color: rgba(255,255,255,0.7);
+/* PLACEHOLDER */
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.75);
 }
 
-.input-group input:focus {
-    background: rgba(255,255,255,0.3);
+/* FOCUS */
+
+input:focus {
+
+    background: rgba(255, 255, 255, 0.28);
+
+    transform: scale(1.02);
+
+    box-shadow:
+        0 0 15px rgba(255, 255, 255, 0.2);
 }
 
-/* ===== Botão ===== */
+/* ===== BOTÃO ===== */
+
 button {
+
     width: 100%;
-    padding: 14px;
-    border-radius: 15px;
+
+    padding: 15px;
+
     border: none;
+
+    border-radius: 16px;
+
     background: white;
-    color: #764ba2;
-    font-weight: 600;
+
+    color: rgb(63, 8, 145);
+
+    font-size: 15px;
+    font-weight: bold;
+
     cursor: pointer;
+
     transition: 0.3s;
 }
+
+/* HOVER BOTÃO */
 
 button:hover {
-    background: #f1f1f1;
+
+    transform: translateY(-2px);
+
+    background: rgb(240, 240, 240);
+
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* ===== Links ===== */
+/* ===== LINKS ===== */
+
 .links {
-    margin-top: 15px;
-    font-size: 13px;
+
+    margin-top: 20px;
+
+    font-size: 14px;
 }
+
+/* LINK */
 
 .links a {
+
     color: white;
+
     text-decoration: none;
+
     opacity: 0.8;
+
+    transition: 0.3s;
 }
+
+/* HOVER LINK */
 
 .links a:hover {
+
     opacity: 1;
+
+    text-decoration: underline;
 }
 
-/* ===== Responsivo ===== */
-@media (max-width: 400px) {
+/* ===== RESPONSIVO ===== */
+
+@media (max-width: 450px) {
+
     .login-container {
+
+        width: 90%;
+
         padding: 30px;
+    }
+
+    .login-container h2 {
+        font-size: 24px;
     }
 }
 
+/* ===== BARRA DE PROGRESSO ===== */
 
-/* ===== Barra de Progresso ===== */
 .progress-container {
+
     width: 100%;
-    height: 5px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 10px;
-    margin-top: 15px;
+    height: 6px;
+
+    margin-top: 18px;
+
+    border-radius: 20px;
+
     overflow: hidden;
-    display: none; /* começa escondida */
+
+    background: rgba(255, 255, 255, 0.2);
+
+    display: none;
 }
 
+/* PROGRESSO */
+
 .progress-bar {
-    height: 100%;
+
     width: 0%;
-    background: linear-gradient(90deg, #8000ff, #ffffff);
-    transition: width 0.1s linear;
+
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #7b2cff,
+        #ffffff
+    );
+
+    transition: width 0.15s linear;
 }

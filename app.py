@@ -4,47 +4,56 @@ import sqlite3
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+# ===== PÁGINA DE LOGIN =====
+@app.route("/")
+def home():
+    return render_template("paginalogin.html")
+
+
+# ===== LOGIN =====
+@app.route("/login", methods=["POST"])
 def login():
 
-    mensagem = ''
+    email = request.form.get("gmail")
+    senha = request.form.get("senha")
 
-    if request.method == 'POST':
+    # CONECTA NO BANCO
+    conn = sqlite3.connect("primeiro_banco.db")
 
-        email = request.form['email']
-        senha = request.form['senha']
+    cursor = conn.cursor()
 
-        conn = sqlite3.connect('primeiro_banco.db')
-        cursor = conn.cursor()
+    # CRIA A TABELA
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS usuarios (
 
-        cursor.execute(
-            'SELECT * FROM usuarios WHERE email=? AND senha=?',
-            (email, senha)
-        )
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email TEXT NOT NULL,
+        senha TEXT NOT NULL
 
-        usuario = cursor.fetchone()
+    )
+    """)
 
-        conn.close()
-
-        if usuario:
-
-            # REDIRECIONA PARA O PAINEL
-            return redirect('/painel')
-
-        else:
-            mensagem = 'E-mail ou senha incorretos.'
-
-    return render_template(
-        'paginalogin.html',
-        mensagem=mensagem
+    # SALVA O LOGIN
+    cursor.execute(
+        """
+        INSERT INTO usuarios (email, senha)
+        VALUES (?, ?)
+        """,
+        (email, senha)
     )
 
+    conn.commit()
+    conn.close()
 
-# NOVA ROTA
-@app.route('/painel')
-def painel():
-    return '<h1>Bem-vindo ao painel!</h1>'
+    # REDIRECIONA PARA O INDEX.HTML
+    return redirect("/index")
 
 
-if __name__ == '__main__':
+# ===== INDEX.HTML =====
+@app.route("/index")
+def index():
+    return render_template("index.html")
+
+
+if __name__ == "__main__":
     app.run(debug=True)
