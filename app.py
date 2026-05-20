@@ -4,25 +4,31 @@ import sqlite3
 app = Flask(__name__)
 
 
-# ===== PÁGINA DE LOGIN =====
+# ===== LOGIN =====
+
 @app.route("/")
 def home():
     return render_template("paginalogin.html")
 
 
-# ===== LOGIN =====
+# ===== RECEBE LOGIN =====
+
 @app.route("/login", methods=["POST"])
 def login():
 
     email = request.form.get("gmail")
     senha = request.form.get("senha")
 
-    # CONECTA NO BANCO
-    conn = sqlite3.connect("primeiro_banco.db")
+    if len(senha) < 4:
 
+        return render_template(
+            "paginalogin.html",
+            mensagem="A senha precisa ter pelo menos 4 caracteres."
+        )
+
+    conn = sqlite3.connect("primeiro_banco.db")
     cursor = conn.cursor()
 
-    # CRIA A TABELA
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS usuarios (
 
@@ -33,7 +39,6 @@ def login():
     )
     """)
 
-    # SALVA O LOGIN
     cursor.execute(
         """
         INSERT INTO usuarios (email, senha)
@@ -45,14 +50,33 @@ def login():
     conn.commit()
     conn.close()
 
-    # REDIRECIONA PARA O INDEX.HTML
     return redirect("/index")
 
 
-# ===== INDEX.HTML =====
+# ===== PÁGINAS =====
+
 @app.route("/index")
 def index():
     return render_template("index.html")
+
+
+@app.route("/pagina.html")
+def dashboard():
+    return render_template("pagina.html")
+
+
+@app.route("/matriculas.html")
+def contato():
+    return render_template("matriculas.html")
+
+
+@app.route("/embreve.html")
+def sobre():
+    return render_template("embreve.html")
+
+@app.route("/paginalogin.html")
+def sobre():
+    return render_template("paginalogin.html")
 
 
 if __name__ == "__main__":
