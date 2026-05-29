@@ -74,9 +74,9 @@ def contato():
 def sobre():
     return render_template("embreve.html")
 
-@app.route("/paginalogin.html")
+@app.route("/pagina.html")
 def sobre():
-    return render_template("paginalogin.html")
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
