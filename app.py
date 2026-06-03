@@ -71,12 +71,13 @@ def contato():
 
 
 @app.route("/embreve.html")
-def sobre():
+def embreve():
     return render_template("embreve.html")
 
-@app.route("/pagina.html")
-def sobre():
-    return render_template("index.html")
+
+@app.route("/paginalogin.html")
+def paginalogin():
+    return render_template("paginalogin.html")
 
 
 if __name__ == "__main__":
